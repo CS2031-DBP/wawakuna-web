@@ -1,13 +1,12 @@
-import CreateForm from "../base/CreateForm";
+import PostForm from "../basic/PostForm";
 
-  
 const CreateHijoForm = () => {
     const data = ['nombre', 'apellido', 'email'];
     
     return(
         <div>
             <span>Hijo</span>
-            <CreateForm data = {data}/>
+            <PostForm data = {data}/>
         </div>
     )
 }

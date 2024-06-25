@@ -5,7 +5,7 @@ import axios from "axios";
 import { API_URL, getToken, initializeState } from "../../utils/Utils";
 
 const PostForm = (props) => {
-    const { data, type} = props;
+    const { data, type, path } = props;
     const [formData, setFormData] = useState(initializeState(data));
     
     const onClick_ = () =>{
@@ -16,7 +16,7 @@ const PostForm = (props) => {
     const onClick = () => {
         axios({
             method: 'post',
-            url: API_URL + "",
+            url: API_URL + path,
             headers: {
                 Authorization: `Bearer ${getToken()}`
             }
