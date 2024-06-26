@@ -1,17 +1,17 @@
 import { Button, TextField } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-
-
-import Alert from '@mui/material/Alert';
-import CheckIcon from '@mui/icons-material/Check';
+import TransitionsSnackbar from "../alert/Success";
 
 import { API_URL, getToken, initializeState } from "../../utils/Utils";
+import { useNavigate } from "react-router-dom";
 
 const PostForm = (props) => {
-    const { data, type, path } = props;
+    const { data, type, path, text } = props;
     const [formData, setFormData] = useState(initializeState(data));
-    
+    const [alert, setAlert] = useState(false);
+    const navigate = useNavigate()
+
     const onClick_ = () =>{
         console.log(formData);
         console.log(getToken());
@@ -27,7 +27,8 @@ const PostForm = (props) => {
             data: formData
         })
         .then(response => {
-//            console.log(response);
+            setAlert(true);
+            setTimeout(() => navigate("/dashboard"), 2000)
         })
         .catch(error => {
             console.error(error);
@@ -61,9 +62,12 @@ const PostForm = (props) => {
             }
             <Button onClick={onClick_}>show on console</Button>
             <Button onClick={onClick}>send form</Button>
-            <Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
-                Padre Creado
-            </Alert>
+            {
+                alert ? 
+                <TransitionsSnackbar text={text}/>
+                :
+                null
+            }
         </div>
     )
 }

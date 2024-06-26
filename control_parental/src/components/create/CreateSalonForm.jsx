@@ -1,10 +1,10 @@
 import PostForm from "../basic/PostForm";
-
-const CreateHijoForm = () => {
-    const data = ['nombre', 'apellido', 'email'];
-    const type = ['string', 'string', 'string'];
-    const path = "/hijo"
-    const text = 'Hijo'
+  
+const CreateSalonForm = () => {
+    const data = ['nombre'];
+    const type = ['string'];
+    const path = '/salon'
+    const text = 'Salon'
     return(
         <div className="w-full flex flex-col items-center">
             <span className="w-full text-center">{text}</span>
@@ -13,4 +13,4 @@ const CreateHijoForm = () => {
     )
 }
 
-export default CreateHijoForm
+export default CreateSalonForm
