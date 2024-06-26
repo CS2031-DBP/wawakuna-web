@@ -25,7 +25,7 @@ const AuthForm = (props) => {
         })
         .then(response => {
             localStorage.setItem('token',response.data.token); //Checkeen que response.data.token es correcto
-
+            console.log(response.data.token)
         })
         .catch(error => {
             console.error(error);

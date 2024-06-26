@@ -1,18 +1,39 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import { FormControl, InputLabel, Input, InputAdornment, IconButton } from "@mui/material"
+import { FormControl, InputLabel, Input, InputAdornment, IconButton, Button } from "@mui/material"
 import { VisibilityOff, Visibility } from "@mui/icons-material"
+import axios from "axios";
+import { API_URL } from "../utils/Utils";
+
+
 
 const LoginForm = () => {
     const [loginData, setLoginData] = useState({
         email: '',
         password: ''
     })
+    const navigate = useNavigate()
 
     const handleChange = (name, value) => {
         setLoginData({
             ...loginData,
             [name]: value
+        })
+    }
+
+    const onClick = () => {
+        axios({
+            method: 'post',
+            url: API_URL + "/auth/login",
+            data: loginData
+        })
+        .then(response => {
+            localStorage.setItem('token',response.data.token); //Checkeen que response.data.token es correcto
+            navigate("/dashboard")
+        })
+        .catch(error => {
+            console.error(error);
         })
     }
 
@@ -49,6 +70,7 @@ const LoginForm = () => {
                     value={loginData.password} onChange={(text) => handleChange("password", text.target.value)}
                 />
             </FormControl>
+            <Button onClick={onClick}>Log In</Button>
         </div>
     )
 }
