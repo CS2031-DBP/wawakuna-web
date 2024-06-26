@@ -6,7 +6,6 @@ import CreatePadreForm from "../components/create/CreatePadreForm"
 const Dashboard = () => {
     return(
         <div>
-            <ResponsiveAppBar/>
             
         </div>
 
