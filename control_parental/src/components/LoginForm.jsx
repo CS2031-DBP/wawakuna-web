@@ -1,15 +1,10 @@
 import { useState } from "react";
-import { FormControl, InputLabel, Input, InputAdornment, IconButton } from "@mui/material";
+import { FormControl, InputLabel, Input, InputAdornment, IconButton, Button } from "@mui/material";
 import { VisibilityOff, Visibility } from "@mui/icons-material";
 import teacher_students from '../assets/teacher_students.jpg';
 
 import logo from '../assets/logo_slogan.png'
-
-
 import { useNavigate } from "react-router-dom";
-
-import { FormControl, InputLabel, Input, InputAdornment, IconButton, Button } from "@mui/material"
-import { VisibilityOff, Visibility } from "@mui/icons-material"
 import axios from "axios";
 import { API_URL } from "../utils/Utils";
 
@@ -58,36 +53,7 @@ const LoginForm = () => {
         // Handle login logic here
         console.log('Login data:', loginData);
     };
-    return(
-        <div className="flex-col flex w-1/2 space-y-4 p-4">
-            <FormControl variant="standard">
-                <InputLabel htmlFor="component-simple">Email</InputLabel>
-                <Input id="component-simple" value={loginData.email} onChange={(text) => handleChange("email", text.target.value)}/>
-            </FormControl>
-            <FormControl variant="standard">    
-                <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
-                <Input
-                    id="standard-adornment-password"
-                    type={showPassword ? 'text' : 'password'}
-                    endAdornment={
-                    <InputAdornment position="end">
-                        <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                    </InputAdornment>
-                    }
-                    value={loginData.password} onChange={(text) => handleChange("password", text.target.value)}
-                />
-            </FormControl>
-            <Button onClick={onClick}>Log In</Button>
-        </div>
-    )
-
-
+    
     return (
         <div className="flex min-h-screen bg-gray-100">
             <div className="hidden lg:flex items-center justify-center w-3/5 bg-purple-100">
