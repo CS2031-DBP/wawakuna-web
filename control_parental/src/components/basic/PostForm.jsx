@@ -1,15 +1,17 @@
 import { Button, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import TransitionsSnackbar from "../alert/Success";
 
 import { API_URL, getToken, initializeState } from "../../utils/Utils";
 import { useNavigate } from "react-router-dom";
+import SuccessAlert from "../alert/SuccessAlert";
+import ErrorAlert from "../alert/ErrorAlert";
 
 const PostForm = (props) => {
     const { data, type, path, text } = props;
     const [formData, setFormData] = useState(initializeState(data));
-    const [alert, setAlert] = useState(false);
+    const [successAlert, setSuccessAlert] = useState(false);
+    const [errorAlert, setErrorAlert] = useState(false);
     const navigate = useNavigate()
 
     const onClick_ = () =>{
@@ -18,6 +20,7 @@ const PostForm = (props) => {
     }
 
     const onClick = () => {
+        setErrorAlert(false);
         axios({
             method: 'post',
             url: API_URL + path,
@@ -27,10 +30,11 @@ const PostForm = (props) => {
             data: formData
         })
         .then(response => {
-            setAlert(true);
-            setTimeout(() => navigate("/dashboard"), 2000)
+            setSuccessAlert(true);
+            setTimeout(() => navigate("/create"), 2000)
         })
         .catch(error => {
+            setErrorAlert(true);
             console.error(error);
         })
     }
@@ -63,8 +67,14 @@ const PostForm = (props) => {
             <Button onClick={onClick_}>show on console</Button>
             <Button onClick={onClick}>send form</Button>
             {
-                alert ? 
-                <TransitionsSnackbar text={text}/>
+                successAlert ? 
+                <SuccessAlert text={text}/>
+                :
+                null
+            }
+            {
+                errorAlert ? 
+                <ErrorAlert text={text}/>
                 :
                 null
             }

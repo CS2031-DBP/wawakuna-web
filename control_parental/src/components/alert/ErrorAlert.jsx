@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 
-export default function TransitionsSnackbar(props) {
+export default function ErrorAlert(props) {
     const [open, setOpen] = React.useState(false);
     
     const handleClose = (event, reason) => {
@@ -20,14 +20,14 @@ export default function TransitionsSnackbar(props) {
   
     return (
       <div>
-        <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
+        <Snackbar open={open} autoHideDuration={2500} onClose={handleClose}>
           <Alert
             onClose={handleClose}
-            severity="success"
+            severity="error"
             variant="filled"
             sx={{ width: '100%' }}
           >
-            {props.text} correctamente creado!
+            Ocurrió un error, vuelve a intentarlo.
           </Alert>
         </Snackbar>
       </div>

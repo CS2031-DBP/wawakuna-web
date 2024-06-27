@@ -15,7 +15,7 @@ const LoginForm = () => {
         email: '',
         password: ''
     });
-
+    const navigate = useNavigate("/dashboard")
     const [showPassword, setShowPassword] = useState(false);
 
 
@@ -97,7 +97,7 @@ const LoginForm = () => {
                         <div className="mt-3">
                             <button
                                 className="w-full py-2 px-4 bg-[#7F265B] hover:bg-[#D9B3C4] text-white font-semibold rounded"
-                                onClick={handleLogin}
+                                onClick={onClick}
                             >
                                 Iniciar Sesión
                             </button>
