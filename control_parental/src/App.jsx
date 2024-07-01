@@ -23,3 +23,4 @@ function App() {
 export default App
 
 //https://reactrouter.com/en/main/components/navigate
+//mvn spring-boot:run
