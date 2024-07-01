@@ -1,4 +1,5 @@
 import PostForm from "../basic/PostForm";
+import UploadFile from "../upload/UploadFile";
 
 const CreateHijoForm = () => {
     const data = ['nombre', 'apellido', 'email'];

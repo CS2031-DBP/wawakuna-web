@@ -64,7 +64,6 @@ const PostForm = (props) => {
                     onChange = {(text) => handleChange(data_name,text.target.value,type[key])}/>
                 ))
             }
-            <Button onClick={onClick_}>show on console</Button>
             <Button onClick={onClick}>send form</Button>
             {
                 successAlert ? 
@@ -83,3 +82,6 @@ const PostForm = (props) => {
 }
 
 export default PostForm
+
+//<Button onClick={onClick_}>show on console</Button>
+            

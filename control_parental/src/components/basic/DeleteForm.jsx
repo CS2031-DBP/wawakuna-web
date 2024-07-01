@@ -11,7 +11,6 @@ const DeleteForm = (props) => {
         axios({
             method: 'delete',
             url: API_URL + `/${id}"`,
-            data: formData,
             headers: {
                 Authorization: `Bearer ${getToken()}`
             }

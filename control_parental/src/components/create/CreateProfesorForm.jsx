@@ -1,5 +1,5 @@
 import PostForm from "../basic/PostForm";
-
+import UploadFile from "../upload/UploadFile";
   
 const CreateProfesorForm = () => {
     const data = ['nombre', 'apellido', 'email', 'password'];
