@@ -4,13 +4,19 @@ import TableRow from '@mui/material/TableRow';
 import Checkbox from '@mui/material/Checkbox';
 import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { useState } from 'react';
 
 import axios from 'axios';
 import { API_URL, getToken } from '../../../utils/Utils';
 
+import WarningAlert from '../../alert/WarningAlert';
+
 const RowPadre = (props) => {
     const row = props.row
     const pathDelete = props.pathDelete
+    
+    const [warningAlert, setWarningAlert] = useState(false);
+
     const onDelete = () => {
         axios({
             method: 'delete',
@@ -20,7 +26,8 @@ const RowPadre = (props) => {
             }
         })
         .then(response => {
-            console.log(response);
+            setWarningAlert(true);
+            setTimeout(() => window.location.reload(), 2000)
         })
         .catch(error => {
             console.error(error);
@@ -41,6 +48,12 @@ const RowPadre = (props) => {
                     <DeleteIcon/>
                 </IconButton>
             </TableCell>
+            {
+                warningAlert ? 
+                <WarningAlert text="Padre"/>
+                :
+                null
+            }
         </TableRow>
     )
 }

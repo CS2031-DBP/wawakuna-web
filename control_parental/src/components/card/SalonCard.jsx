@@ -7,7 +7,7 @@ const SalonCard = (props) => {
     const {salon} = props;
 
     const navigate = useNavigate();
-
+/*
     const onClick = () => {
         axios({
             method: 'delete',
@@ -23,7 +23,7 @@ const SalonCard = (props) => {
             console.error(error);
         })
     }
-
+*/
     return(
         <div className='flex flex-row items-center'>
             <ListItemButton onClick={() => {navigate(`/salon/${salon.id}`)}}>
@@ -35,7 +35,7 @@ const SalonCard = (props) => {
                 </ListItem>
             </ListItemButton>
             <div>
-                <IconButton className='h-10'>
+                <IconButton className='h-10' onClick={() => {console.log(salon)}}>
                     <DeleteIcon/>
                 </IconButton>
             </div>
