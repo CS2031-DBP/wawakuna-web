@@ -269,7 +269,8 @@ export default function TableHijo(props) {
   );
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <div className='m-3'>
+      <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: '100%', mb: 2 }}>
         <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer>
@@ -322,5 +323,7 @@ export default function TableHijo(props) {
         label="Dense padding"
       />
     </Box>
+    </div>
+    
   );
 }
