@@ -62,7 +62,7 @@ export default function TablePadre(props) {
   return (
     <TableContainer component={Paper}>
       <Toolbar>Padres</Toolbar>
-      <Table aria-label="simple table" sx={{ width: '100%' }}>
+      <Table aria-label="simple table" sx={{minWidth: 750}}>
         <TableHead>
           <TableRow>
             <TableCell>Nombre</TableCell>

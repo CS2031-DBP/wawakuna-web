@@ -9,14 +9,17 @@ const SalonList = (props) => {
     useEffect(() => {
         axios({
             method: 'get',
-            url: API_URL + '/salon/1',
+            url: API_URL + '/salon/all',
             headers: {
                 Authorization: `Bearer ${getToken()}`
+            },
+            params:{
+                page: 0,
+                size: 100
             }
         })
         .then(response => {
-            setSalones([response.data])
-            console.log(response.data)
+            setSalones(response.data)
             setLoading(false);
         })
         .catch(error => {
@@ -30,7 +33,9 @@ const SalonList = (props) => {
                 <h1>Loading</h1>
                 :
                 salones.map((salon, key) => {
-                    return <SalonCard salon = {salon}/>
+                    return <div key={key} className="w-full">
+                        <SalonCard salon = {salon}/>
+                        </div>
                 })
             }
         </div>
