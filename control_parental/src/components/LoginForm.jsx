@@ -35,7 +35,7 @@ const LoginForm = () => {
         })
         .then(response => {
             localStorage.setItem('token',response.data.token); //Checkeen que response.data.token es correcto
-            navigate("/dashboard")
+            navigate("/dashboard/hijos")
         })
         .catch(error => {
             console.error(error);
