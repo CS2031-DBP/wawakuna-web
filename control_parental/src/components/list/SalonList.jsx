@@ -1,12 +1,27 @@
 import { useEffect, useState } from "react"
 import SalonCard from "../card/SalonCard"
+import axios from "axios";
+import { API_URL, getToken } from "../../utils/Utils";
 
 const SalonList = (props) => {
     const [salones, setSalones] = useState([])
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-        setSalones([{name: "Salon 1", id: 1}, {name: "Salon 2", id: 2}])
-        setLoading(false);
+        axios({
+            method: 'get',
+            url: API_URL + '/salon/1',
+            headers: {
+                Authorization: `Bearer ${getToken()}`
+            }
+        })
+        .then(response => {
+            setSalones([response.data])
+            console.log(response.data)
+            setLoading(false);
+        })
+        .catch(error => {
+            console.error(error)
+        })
     },[])
     return(
         <div>
@@ -14,8 +29,8 @@ const SalonList = (props) => {
                 loading ?
                 <h1>Loading</h1>
                 :
-                salones.map((value, key) => {
-                    return <SalonCard salon = {value}/>
+                salones.map((salon, key) => {
+                    return <SalonCard salon = {salon}/>
                 })
             }
         </div>

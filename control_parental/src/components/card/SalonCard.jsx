@@ -27,11 +27,11 @@ const SalonCard = (props) => {
     return(
         <div className='flex flex-row items-center'>
             <ListItemButton onClick={() => {navigate(`/salon/${salon.id}`)}}>
-                <ListItemText primary={salon.name}/>
                 <ListItem
                     key={salon.id}
                     disableGutters
                 >
+                    <ListItemText primary={salon.nombre}/>
                 </ListItem>
             </ListItemButton>
             <div>
@@ -45,7 +45,7 @@ const SalonCard = (props) => {
 }
 
 SalonCard.defaultProps = {
-    name: 'undefined',
+    nombre: 'undefined',
     value: 0
 }
 

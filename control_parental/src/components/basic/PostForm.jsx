@@ -8,7 +8,7 @@ import SuccessAlert from "../alert/SuccessAlert";
 import ErrorAlert from "../alert/ErrorAlert";
 
 const PostForm = (props) => {
-    const { data, type, path, text } = props;
+    const { data, type, path, text, salonId } = props;
     const [formData, setFormData] = useState(initializeState(data));
     const [successAlert, setSuccessAlert] = useState(false);
     const [errorAlert, setErrorAlert] = useState(false);
@@ -21,6 +21,26 @@ const PostForm = (props) => {
 
     const onClick = () => {
         setErrorAlert(false);
+        /*
+        if(typeof(salonId) !== 'undefined'){
+            axios({
+                method: 'patch',
+                url: API_URL + `${salonId}/${path}/${}`,
+                headers: {
+                    Authorization: `Bearer ${getToken()}`
+                },
+                data: formData
+            })
+            .then(response => {
+                setSuccessAlert(true);
+                setTimeout(() => window.location.reload(), 2000)
+            })
+            .catch(error => {
+                setErrorAlert(true);
+                console.error(error);
+            })
+        }*/
+        
         axios({
             method: 'post',
             url: API_URL + path,
@@ -31,7 +51,7 @@ const PostForm = (props) => {
         })
         .then(response => {
             setSuccessAlert(true);
-            setTimeout(() => navigate("/create"), 2000)
+            setTimeout(() => window.location.reload(), 2000)
         })
         .catch(error => {
             setErrorAlert(true);
