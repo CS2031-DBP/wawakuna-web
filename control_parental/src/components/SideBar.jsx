@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   MdOutlineDashboard,
 } from 'react-icons/md';
 import {
   BsChevronDown,
-  BsServer,
 } from 'react-icons/bs';
 import { FaPeopleGroup } from "react-icons/fa6";
 import { SiGoogleclassroom } from "react-icons/si";
@@ -16,18 +16,25 @@ const Menus = [
     icon: <FaPeopleGroup/>,
     subMenus: [
       {
-        title: 'Hijos', 
+        title: 'Hijos',
+        path: '/dashboard/hijos' 
       },
       {
         title: 'Padres',
+        path: '/dashboard/padres'
       },
       {
         title: 'Profesores',
+        path: '/dashboard/profesores'
       },
     ],
   },
-  {title: 'Salones', icon: <SiGoogleclassroom />}
-];
+  {
+    title: 'Salones',
+    icon: <SiGoogleclassroom />,
+    path: '/dashboard/salones',
+  }
+  ];
 
 const Sidebar = () => {
   const [subMenuOpen, setSubMenuOpen] = useState(false);
@@ -40,6 +47,7 @@ const Sidebar = () => {
         <ul className="pt-6">
           {Menus.map((Menu, index) => (
             <>
+              <Link to={Menu.path}>
               <li
                 key={index}
                 className={`flex rounded-md p-2 cursor-pointer hover:bg-zinc-300 text-white text-md items-center gap-x-4 ${
@@ -55,15 +63,18 @@ const Sidebar = () => {
                   />
                 )}
               </li>
+              </Link>
               {Menu.subMenus && subMenuOpen && (
                 <ul>
                   {Menu.subMenus.map((subMenuItem, idx) => (
+                    <Link to ={subMenuItem.path} >
                     <li
                       key={idx}
                       className="flex px-8 ml-4 cursor-pointer text-center text-md hover:bg-zinc-300 text-white py-1.5"
                     >
                       {subMenuItem.title}
                     </li>
+                    </Link>
                   ))}
                 </ul>
               )}
