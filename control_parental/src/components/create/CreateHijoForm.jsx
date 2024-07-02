@@ -1,8 +1,9 @@
 import PostForm from "../basic/PostForm";
+import UploadFile from "../upload/UploadFile";
 
 const CreateHijoForm = () => {
-    const data = ['nombre', 'apellido', 'email'];
-    const type = ['string', 'string', 'string'];
+    const data = ['nombre', 'apellido'];
+    const type = ['string', 'string'];
     const path = "/hijo"
     const text = 'Hijo'
     return(

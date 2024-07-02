@@ -4,6 +4,7 @@ import Dashboard from "./pages/Dashboard"
 import Create from "./pages/CreatePage"
 import { Navigate } from "react-router-dom"
 import ResponsiveAppBar from "./components/NavBar"
+import SalonDetail from "./pages/SalonDetail"
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
         <Route path = "/auth/login" element ={<Login/>}/>
         <Route path = "/dashboard" element ={<Dashboard/>}/>
         <Route path = "/create/*" element = {<Create/>}/>
+        <Route path = "/salon/:id" element = {<SalonDetail/>}/>
       </Routes>
     </BrowserRouter>
   )
@@ -23,3 +25,4 @@ function App() {
 export default App
 
 //https://reactrouter.com/en/main/components/navigate
+//mvn spring-boot:run
