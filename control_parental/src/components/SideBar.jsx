@@ -7,7 +7,7 @@ import {
   BsServer,
 } from 'react-icons/bs';
 import { FaPeopleGroup } from "react-icons/fa6";
-
+import { SiGoogleclassroom } from "react-icons/si";
 
 const Menus = [
   {
@@ -16,33 +16,26 @@ const Menus = [
     icon: <FaPeopleGroup/>,
     subMenus: [
       {
-        title: 'Service 1',
-        src: '/services/services1',
-        cName: 'sub-nav',
+        title: 'Hijos', 
       },
       {
-        title: 'Service 2',
-        src: '/services/services2',
-        cName: 'sub-nav',
+        title: 'Padres',
       },
       {
-        title: 'Service 3',
-        src: '/services/services3',
+        title: 'Profesores',
       },
     ],
   },
+  {title: 'Salones', icon: <SiGoogleclassroom />}
 ];
 
 const Sidebar = () => {
-  const [open, setOpen] = useState(true);
   const [subMenuOpen, setSubMenuOpen] = useState(false);
 
   return (
     <div className="h-screen flex">
       <div
-        className={`${
-          open ? 'w-48 px-2 ' : 'w-0 '
-        } lg:w-72 bg-zinc-400 h-screen relative duration-500 right-0`}
+        className="lg:w-72 w-48 px-2 bg-zinc-400 h-screen relative duration-500 right-0" 
       >
         <ul className="pt-6">
           {Menus.map((Menu, index) => (
@@ -62,12 +55,12 @@ const Sidebar = () => {
                   />
                 )}
               </li>
-              {Menu.subMenus && subMenuOpen && open && (
+              {Menu.subMenus && subMenuOpen && (
                 <ul>
                   {Menu.subMenus.map((subMenuItem, idx) => (
                     <li
                       key={idx}
-                      className="flex px-5 cursor-pointer text-center text-sm text-gray-200 py-1"
+                      className="flex px-8 ml-4 cursor-pointer text-center text-md hover:bg-zinc-300 text-white py-1.5"
                     >
                       {subMenuItem.title}
                     </li>
