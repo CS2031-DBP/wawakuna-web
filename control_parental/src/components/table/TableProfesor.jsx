@@ -21,7 +21,7 @@ function createData(id,nombre,apellido, email) {
 export default function TableProfesor(props) {
   const {pathGet, pathDelete} = props
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
   const [rows, setRows] = useState([]);
   useEffect(() => {
     axios({

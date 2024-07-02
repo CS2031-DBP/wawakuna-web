@@ -1,4 +1,4 @@
-import { Button, TextField } from "@mui/material";
+import { Autocomplete, Button, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -7,47 +7,36 @@ import { useNavigate } from "react-router-dom";
 import SuccessAlert from "../alert/SuccessAlert";
 import ErrorAlert from "../alert/ErrorAlert";
 
+
+function createData(label, id){
+    return {label, id}
+}
+
 const PostForm = (props) => {
-    const { data, type, path, text, salonId } = props;
+    const { data, type, path, text} = props;
     const [formData, setFormData] = useState(initializeState(data));
     const [successAlert, setSuccessAlert] = useState(false);
     const [errorAlert, setErrorAlert] = useState(false);
-    const navigate = useNavigate()
+    const [idPadre, setIdPadre] = useState(null);
+    const [padres, setPadres] = useState([]);
 
     const onClick_ = () =>{
         console.log(formData);
         console.log(getToken());
+        console.log(idPadre)
     }
 
     const onClick = () => {
+        const params = (text == 'Hijo')? {idPadre} : {}
         setErrorAlert(false);
-        /*
-        if(typeof(salonId) !== 'undefined'){
-            axios({
-                method: 'patch',
-                url: API_URL + `${salonId}/${path}/${}`,
-                headers: {
-                    Authorization: `Bearer ${getToken()}`
-                },
-                data: formData
-            })
-            .then(response => {
-                setSuccessAlert(true);
-                setTimeout(() => window.location.reload(), 2000)
-            })
-            .catch(error => {
-                setErrorAlert(true);
-                console.error(error);
-            })
-        }*/
-        
         axios({
             method: 'post',
             url: API_URL + path,
             headers: {
                 Authorization: `Bearer ${getToken()}`
             },
-            data: formData
+            data: formData,
+            params: params
         })
         .then(response => {
             setSuccessAlert(true);
@@ -73,6 +62,29 @@ const PostForm = (props) => {
         });
     }
 
+    useEffect(() => {
+        if(text !== 'Hijo') return;
+        axios({
+            method: 'get',
+            url: API_URL + '/padre/all',
+            params:{
+                page:0,
+                size:1000
+            },
+            headers: {
+                Authorization: `Bearer ${getToken()}`
+            }
+        })
+        .then(response => {
+            let padres_ = []
+            response.data.map((padre) => {padres_.push(createData(`${padre.nombre} ${padre.apellido}`,padre.id))})
+            setPadres(padres_)
+        })
+        .catch(error => {
+            console.error(error)
+        })
+    },[])
+
     return(
         <div className="flex flex-col w-full space-y-3">
             {
@@ -83,6 +95,16 @@ const PostForm = (props) => {
                     label = {data_name}
                     onChange = {(text) => handleChange(data_name,text.target.value,type[key])}/>
                 ))
+            }
+            {
+                (text == 'Hijo')?
+                <Autocomplete
+                onChange={(event, value) => {setIdPadre(value.id)}}
+                options={padres}
+                isOptionEqualToValue={(option, value) => option.id === value?.id}
+                renderInput={(params) => <TextField {...params} label="Padre" />}/>
+                :
+                null
             }
             <Button onClick={onClick}>send form</Button>
             {
@@ -97,6 +119,7 @@ const PostForm = (props) => {
                 :
                 null
             }
+            
         </div>
     )
 }

@@ -13,7 +13,9 @@ const Dashboard = () => {
     
     return(
         <div className="w-2/3 items-center flex flex-col space-y-4">
-            <SalonList/>
+            <div className="w-full">
+                <SalonList/>
+            </div>
             <div>
                 <AllProfesor/>
             </div>
