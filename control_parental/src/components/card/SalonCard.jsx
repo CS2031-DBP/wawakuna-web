@@ -7,23 +7,7 @@ const SalonCard = (props) => {
     const {salon} = props;
 
     const navigate = useNavigate();
-/*
-    const onClick = () => {
-        axios({
-            method: 'delete',
-            url: API_URL + `/salon/${id}"`,
-            headers: {
-                Authorization: `Bearer ${getToken()}`
-            }
-        })
-        .then(response => {
-//            console.log(response);
-        })
-        .catch(error => {
-            console.error(error);
-        })
-    }
-*/
+
     return(
         <div className='flex flex-row items-center'>
             <ListItemButton onClick={() => {navigate(`/salon/${salon.id}`)}}>

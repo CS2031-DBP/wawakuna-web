@@ -2,6 +2,8 @@ import { Autocomplete, Button, TextField } from "@mui/material"
 import { useEffect, useState } from "react"
 import { API_URL, getToken } from "../../utils/Utils"
 import axios from "axios"
+import InfoAlert from "../alert/InfoAlert"
+import ErrorAlert from "../alert/ErrorAlert"
 
 function createData(label, id){
     return {label, id}
@@ -11,7 +13,11 @@ const Add = (props) => {
     const {salonId, text,path} = props
     const [id, setId] = useState(null)
     const [rows, setRows] = useState([])
+    const [infoAlert, setInfoAlert] = useState(false)
+    const [errorAlert, setErrorAlert] = useState(false)
     const onClick = () => {
+        setInfoAlert(false)
+        setErrorAlert(false)
         axios({
             method: 'patch',
             url: API_URL + `/salon/${salonId}${path}/${id}`,
@@ -20,10 +26,12 @@ const Add = (props) => {
             }
         })
         .then(response => {
-            console.log(response)
+            setInfoAlert(true)
+            setTimeout(() => window.location.reload(), 2000)
         })
         .catch(error => {
             console.error(error)
+            setErrorAlert(true)
         })
     }
 
@@ -60,10 +68,22 @@ const Add = (props) => {
                 isOptionEqualToValue={(option, value) => option.id === value?.id}
                 renderInput={(params) => <TextField {...params} label={text} />}
             />
+            {
+                infoAlert?
+                <InfoAlert text = {text}/>
+                :
+                null
+            }
+            {
+                errorAlert?
+                <ErrorAlert/>
+                :
+                null
+            }
         </div>
     )
 }
 
 export default Add
 
-//WARNING q hace el isOptionEqualToValue
+//Error q hace el isOptionEqualToValue

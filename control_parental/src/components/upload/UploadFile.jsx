@@ -42,7 +42,7 @@ const UploadFile = (props) => {
       setTimeout(() => navigate("/dashboard"), 2000)
     })
     .catch(error => {
-      console.log(error)
+      console.error(error)
       setUploadStatus("Upload failed. Please try again.");
     })
   };
