@@ -42,7 +42,7 @@ const Sidebar = () => {
   return (
     <div className="h-screen flex">
       <div
-        className="lg:w-72 w-48 px-2 bg-zinc-400 h-screen relative duration-500 right-0" 
+        className="lg:w-72 w-48 px-2 bg-zinc-600 h-screen relative duration-500 right-0" 
       >
         <ul className="pt-6">
           {Menus.map((Menu, index) => (
@@ -50,7 +50,7 @@ const Sidebar = () => {
               <Link to={Menu.path}>
               <li
                 key={index}
-                className={`flex rounded-md p-2 cursor-pointer hover:bg-zinc-300 text-white text-md items-center gap-x-4 ${
+                className={`flex rounded-md p-2 cursor-pointer hover:bg-zinc-600 text-white text-md items-center gap-x-4 ${
                   Menu.gap ? 'mt-9' : 'mt-2'
                 }`}
               >
@@ -70,7 +70,7 @@ const Sidebar = () => {
                     <Link to ={subMenuItem.path} >
                     <li
                       key={idx}
-                      className="flex px-8 ml-4 cursor-pointer text-center text-md hover:bg-zinc-300 text-white py-1.5"
+                      className="flex px-8 ml-4 cursor-pointer text-center text-md hover:bg-zinc-500 text-white py-1.5"
                     >
                       {subMenuItem.title}
                     </li>

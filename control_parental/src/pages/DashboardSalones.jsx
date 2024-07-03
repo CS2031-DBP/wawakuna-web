@@ -1,12 +1,12 @@
 import Sidebar from "../components/SideBar";
-import SalonCard from "../components/card/SalonCard";
+import SalonList from "../components/list/SalonList";
 
 const DashboardSalones = () => {
   return (
     <div className="flex h-screen">
       <Sidebar />
       <div className="flex-grow">
-        <SalonCard />
+        <SalonList/>
       </div>
     </div>
   );
