@@ -58,36 +58,32 @@ export default function TableProfesor(props) {
 
   const id = props.id;
   return (
-    <div className="m-3">
-      <TableContainer component={Paper}>
-        <div className="text-lg font-medium">
-          <Toolbar>Profesores</Toolbar>
-        </div>
-        <Table aria-label="simple table" sx={{ minWidth: 750 }}>
-          <TableHead>
-            <TableRow>
-              <TableCell>Nombre</TableCell>
-              <TableCell align="right">Apellido</TableCell>
-              <TableCell align="right">Email</TableCell>
-              <TableCell align="right"></TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row) => (
-              <RowProfesor row={row} pathDelete={pathDelete} />
-            ))}
-          </TableBody>
-        </Table>
-        <TablePagination
-          component="div"
-          rowsPerPageOptions={[5, 10, 25]}
-          count={100}
-          page={page}
-          onPageChange={handleChangePage}
-          rowsPerPage={rowsPerPage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
-      </TableContainer>
-    </div>
+    <TableContainer component={Paper}>
+      <Toolbar>Profesores</Toolbar>
+      <Table aria-label="simple table" sx={{minWidth: 750}}>
+        <TableHead>
+          <TableRow>
+            <TableCell>Nombre</TableCell>
+            <TableCell align='right'>Apellido</TableCell>
+            <TableCell align='right'>Email</TableCell>
+            <TableCell align='right'></TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <RowProfesor row={row} pathDelete = {pathDelete} method ={props.method}/>
+          ))}
+        </TableBody>
+      </Table>
+      <TablePagination
+        component="div"
+        rowsPerPageOptions={[5, 10, 25]}
+        count={100}
+        page={page}
+        onPageChange={handleChangePage}
+        rowsPerPage={rowsPerPage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+      />
+    </TableContainer>
   );
 }

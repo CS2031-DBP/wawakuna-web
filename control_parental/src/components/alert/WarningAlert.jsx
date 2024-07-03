@@ -27,7 +27,7 @@ export default function WarningAlert(props) {
             variant="filled"
             sx={{ width: '100%' }}
           >
-            {props.text} fue eliminado.
+            {props.text}
           </Alert>
         </Snackbar>
       </div>

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
-import Checkbox from '@mui/material/Checkbox';
+
 import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useState } from 'react';
@@ -50,7 +50,7 @@ const RowPadre = (props) => {
             </TableCell>
             {
                 warningAlert ? 
-                <WarningAlert text="Padre"/>
+                <WarningAlert text="Padre fue eliminado."/>
                 :
                 null
             }

@@ -13,13 +13,14 @@ import { useState } from 'react';
 const RowProfesor = (props) => {
     const row = props.row
     const pathDelete = props.pathDelete
+    const method = props.method
 
     const [warningAlert, setWarningAlert] = useState(false);
     
 
     const onDelete = () => {
         axios({
-            method: 'delete',
+            method: method,
             url: API_URL + `${pathDelete}/${row.id}`,
             headers: {
                 Authorization: `Bearer ${getToken()}`
@@ -50,7 +51,7 @@ const RowProfesor = (props) => {
             </TableCell>
             {
                 warningAlert ? 
-                <WarningAlert text="Profesor"/>
+                <WarningAlert text="Profesor fue eliminado."/>
                 :
                 null
             }
