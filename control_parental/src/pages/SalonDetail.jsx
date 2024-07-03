@@ -1,15 +1,9 @@
 import { useParams } from "react-router-dom";
-import ProfesorList from "../components/list/ProfesorList";
-import HijoList from "../components/list/HijoList";
-import Table from "../components/table/Table";
-import TableHijo from "../components/table/TableHijo";
 import TableProfesor from "../components/table/TableProfesor";
-import CreateProfesorForm from "../components/create/CreateProfesorForm";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { API_URL } from "../utils/Utils";
-import { getToken } from "../utils/Utils";
-
+import Add from "../components/add/Add"
+import AddProfesor from "../components/add/AddProfesor";
+import AddHijo from "../components/add/AddHijo";
+import TableHijo from "../components/table/TableHijo";
 const SalonDetail = () => {
     const { id } = useParams();
     /*const [loading, setLoading] = useState(true)
@@ -39,11 +33,23 @@ const SalonDetail = () => {
             {
                 <>
                     <h1>Salon 1</h1>
-                    <div className="flex flex-row space-y-5">
-                        <div className="flex flex-col space-y-5 w-1/2 p-5">
-                            <TableProfesor pathGet = {`/salon/${id}/profesor`} pathDelete = {`/salon/${id}/quitarProfesor`}/>
+                    <div className="flex flex-col space-y-5">
+                        <div>
+                            <TableProfesor pathGet = {`/profesor/salon/${id}`} pathDelete = {`/salon/${id}/quitarProfesor`} method="patch"/>
                         </div>
-                    </div>    
+                        <div>
+                            <AddProfesor id = {id}/>
+                        </div>
+                    </div>
+                    <div className="flex flex-col space-y-5">
+                        <div>
+                            <TableHijo pathGet = {`/hijo/salon/${id}`} pathDelete = {`/salon/${id}/quitarHijo`} method="patch"/>
+                        </div>
+                        <div>
+                            <AddHijo id = {id}/>
+                        </div>
+                    </div>
+                        
                 </>
             }
         </div>
