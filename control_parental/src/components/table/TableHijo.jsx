@@ -47,7 +47,7 @@ export default function TableHijo(props) {
     .then(response => {
       const rowData = []
       response.data.map((row, index) => {
-        rowData.push(createData(row.id, row.nombre, row.apellido, row.padre.nombre, row.padre.email))
+        rowData.push(createData(row.id, row.nombre, row.apellido, row.padre.nombre+" "+row.padre.apellido, row.padre.email))
       })
       setRows(rowData)
     })

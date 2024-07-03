@@ -2,8 +2,8 @@ import PostForm from "../basic/PostForm";
 import UploadFile from "../upload/UploadFile";
   
 const CreatePadreForm = () => {
-    const data = ['nombre', 'apellido', 'email', 'phoneNumber', 'password'];
-    const type = ['string', 'string', 'string', 'string', 'string'];
+    const data = ['nombre', 'apellido', 'email', 'phoneNumber'];
+    const type = ['string', 'string', 'string', 'string'];
     const path = '/padre'
     const text = 'Padre'
     return(

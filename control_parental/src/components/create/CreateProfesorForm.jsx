@@ -2,9 +2,9 @@ import PostForm from "../basic/PostForm";
 import UploadFile from "../upload/UploadFile";
   
 const CreateProfesorForm = (props) => {
-    const data = ['nombre', 'apellido', 'email', 'password'];
+    const data = ['nombre', 'apellido', 'email'];
     const path = '/profesor'
-    const type = ['string', 'string', 'string', 'string'];
+    const type = ['string', 'string', 'string'];
     const text = 'Profesor'
     const {salonId} = props
     return(
