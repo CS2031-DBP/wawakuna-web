@@ -72,7 +72,7 @@ export default function TableProfesor(props) {
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <RowProfesor row={row} pathDelete = {pathDelete}/>
+            <RowProfesor row={row} pathDelete = {pathDelete} method ={props.method}/>
           ))}
         </TableBody>
       </Table>

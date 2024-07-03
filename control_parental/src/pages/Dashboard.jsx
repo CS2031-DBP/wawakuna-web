@@ -12,7 +12,7 @@ import SalonList from "../components/list/SalonList"
 const Dashboard = () => {
     
     return(
-        <div className="w-2/3 items-center flex flex-col space-y-4">
+        <div className="items-center flex flex-col space-y-4">
             <div className="w-full">
                 <SalonList/>
             </div>
@@ -22,6 +22,10 @@ const Dashboard = () => {
             <div>
                 <AllPadre/>
             </div>
+            <div>
+                <AllHijo/>
+            </div>
+            
         </div>
 
     )
