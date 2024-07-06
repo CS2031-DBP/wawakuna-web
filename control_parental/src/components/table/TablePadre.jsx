@@ -13,6 +13,7 @@ import { API_URL, getToken } from '../../utils/Utils';
 
 import axios from 'axios';
 import { Toolbar } from '@mui/material';
+import DialogPadre from './dialog/DialogPadre';
 
 function createData(id,nombre,apellido, email,phoneNumber) {
   return {id, nombre,apellido,email, phoneNumber};
@@ -61,7 +62,12 @@ export default function TablePadre(props) {
   const id = props.id
   return (
     <TableContainer component={Paper}>
-      <Toolbar>Padres</Toolbar>
+      <Toolbar className='flex flex-row'>
+        <span className='flex-1'>Padres</span>
+        <div className='flex-1 flex justify-end'>
+          <DialogPadre/>
+        </div>
+      </Toolbar>
       <Table aria-label="simple table" sx={{minWidth: 750}}>
         <TableHead>
           <TableRow>

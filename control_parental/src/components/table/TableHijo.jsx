@@ -13,8 +13,10 @@ import { useEffect, useState } from 'react';
 import { API_URL, getToken } from '../../utils/Utils';
 
 import axios from 'axios';
-import { Toolbar } from '@mui/material';
+import { Button, Toolbar } from '@mui/material';
 import RowHijo from './row/RowHijo';
+import { useNavigate } from 'react-router-dom';
+import DialogHijo from './dialog/DialogHijo';
 
 
 function createData(id, nombre, apellido, padre, email) {
@@ -65,11 +67,17 @@ export default function TableHijo(props) {
     setPage(0);
   };
 
+  const navigate = useNavigate();
 
   const id = props.id
   return (
     <TableContainer component={Paper}>
-      <Toolbar>Hijos</Toolbar>
+      <Toolbar className='flex flex-row'>
+        <span className='flex-1'>Hijos</span>
+        <div className='flex-1 flex justify-end'>
+          <DialogHijo/>
+        </div>
+      </Toolbar>
       <Table aria-label="simple table" sx={{minWidth: 750}}>
         <TableHead>
           <TableRow>

@@ -13,6 +13,7 @@ import { API_URL, getToken } from "../../utils/Utils";
 
 import axios from "axios";
 import { Toolbar } from "@mui/material";
+import DialogProfesor from "./dialog/DialogProfesor";
 
 function createData(id, nombre, apellido, email) {
   return { id, nombre, apellido, email };
@@ -59,7 +60,12 @@ export default function TableProfesor(props) {
   const id = props.id;
   return (
     <TableContainer component={Paper}>
-      <Toolbar>Profesores</Toolbar>
+      <Toolbar className='flex flex-row'>
+        <span className='flex-1'>Profesores</span>
+        <div className='flex-1 flex justify-end'>
+          <DialogProfesor/>
+        </div>
+      </Toolbar>
       <Table aria-label="simple table" sx={{minWidth: 750}}>
         <TableHead>
           <TableRow>
