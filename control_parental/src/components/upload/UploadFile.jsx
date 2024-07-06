@@ -19,7 +19,7 @@ const UploadFile = (props) => {
 
   const handleUpload = async () => {
     if (!file) {
-      setUploadStatus("Please select a file first.");
+      setUploadStatus("Por favor, selecciona un .csv");
       return;
     }
 
@@ -39,7 +39,7 @@ const UploadFile = (props) => {
     .then(response => {
       setUploadStatus("Upload successful!");
       setAlert(true);
-      setTimeout(() => navigate("/dashboard"), 2000)
+      setTimeout(() => window.location.reload(), 2000)
     })
     .catch(error => {
       console.error(error)
