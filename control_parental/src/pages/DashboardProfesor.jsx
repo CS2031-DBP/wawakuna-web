@@ -6,7 +6,7 @@ const DashboardProfesor = () => {
   return (
     <div className="flex h-screen">
       <Sidebar />
-      <div className="flex-grow">
+      <div className="flex-grow p-10">
         <AllProfesor />
       </div>
     </div>

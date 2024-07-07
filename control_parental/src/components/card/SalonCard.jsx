@@ -10,7 +10,7 @@ const SalonCard = (props) => {
 
     return(
         <div className='flex flex-row items-center'>
-            <ListItemButton onClick={() => {navigate(`/salon/${salon.id}`)}}>
+            <ListItemButton onClick={() => {navigate(`/salon/${salon.id}/${salon.nombre.replaceAll(' ','-')}`)}}>
                 <ListItem
                     key={salon.id}
                     disableGutters
