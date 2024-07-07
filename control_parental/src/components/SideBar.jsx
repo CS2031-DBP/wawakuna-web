@@ -8,6 +8,7 @@ import {
 } from 'react-icons/bs';
 import { FaPeopleGroup } from "react-icons/fa6";
 import { SiGoogleclassroom } from "react-icons/si";
+import { Typography } from '@mui/material';
 
 const Menus = [
   {
@@ -40,9 +41,9 @@ const Sidebar = () => {
   const [subMenuOpen, setSubMenuOpen] = useState(false);
 
   return (
-    <div className="h-screen flex">
+    <div className="h-dvh flex">
       <div
-        className="lg:w-72 w-48 px-2 bg-zinc-600 h-screen relative duration-500 right-0" 
+        className="lg:w-72 w-48 px-2 bg-zinc-600 h-dvh relative duration-500 right-0" 
       >
         <ul className="pt-6">
           {Menus.map((Menu, index) => (
@@ -50,17 +51,18 @@ const Sidebar = () => {
               <Link to={Menu.path}>
               <li
                 key={index}
-                className={`flex rounded-md p-2 cursor-pointer hover:bg-zinc-600 text-white text-md items-center gap-x-4 ${
+                className={`flex rounded-md p-2 cursor-pointer hover:bg-zinc-500 text-white text-md items-center gap-x-4 ${
                   Menu.gap ? 'mt-9' : 'mt-2'
                 }`}
               >
                 {Menu.icon ? Menu.icon : <MdOutlineDashboard />}
                 <span className="flex-1">{Menu.title}</span>
                 {Menu.subMenus && (
-                  <BsChevronDown
-                    onClick={() => setSubMenuOpen(!subMenuOpen)}
-                    className={`${subMenuOpen && 'rotate-180'}`}
-                  />
+                  <Typography className='flex w-8 justify-center h-full' onClick={() => setSubMenuOpen(!subMenuOpen)}>
+                    <BsChevronDown
+                      className={`${subMenuOpen && 'rotate-180'}`}
+                    />
+                  </Typography>
                 )}
               </li>
               </Link>

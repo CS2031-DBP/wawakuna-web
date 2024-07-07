@@ -58,11 +58,11 @@ const Add = (props) => {
     },[])
 
     return(
-        <div className="flex flex-row w-full">
-            <Button onClick={onClick}>Añadir {text}</Button>
+        <div className="flex flex-row flex-grow w-full">
+            <Button className="w-1/3" onClick={onClick}>Añadir {text}</Button>
             <Autocomplete
                 disablePortal
-                className="w-full"
+                className="w-1/2"
                 onChange={(event,value) => {setId(value.id)}}
                 options = {rows}
                 isOptionEqualToValue={(option, value) => option.id === value?.id}

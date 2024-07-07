@@ -35,7 +35,7 @@ function ResponsiveAppBar() {
         <Toolbar disableGutters>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <img src={logo} alt="logo" style={{ height: 60, marginRight: '10px' }} />
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <Typography variant="h6" component="a" sx={{ flexGrow: 1 }} href="/dashboard">
               Control Parental
             </Typography>
           </Box>

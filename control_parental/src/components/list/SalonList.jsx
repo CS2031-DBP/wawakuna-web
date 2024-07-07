@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import SalonCard from "../card/SalonCard"
 import axios from "axios";
 import { API_URL, getToken } from "../../utils/Utils";
+import { Divider } from "@mui/material";
 
 const SalonList = (props) => {
     const [salones, setSalones] = useState([])
@@ -35,6 +36,7 @@ const SalonList = (props) => {
                 salones.map((salon, key) => {
                     return <div key={key} className="w-full">
                         <SalonCard salon = {salon}/>
+                        <Divider component="div" className="w-full" variant="middle" textAlign="center"/>
                         </div>
                 })
             }

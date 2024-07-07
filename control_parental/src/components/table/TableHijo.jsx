@@ -96,7 +96,7 @@ export default function TableHijo(props) {
       </Table>
       <TablePagination
         component="div"
-        rowsPerPageOptions={[5, 10, 25]}
+        rowsPerPageOptions={[3, 5, 10]}
         count={100}
         page={page}
         onPageChange={handleChangePage}
