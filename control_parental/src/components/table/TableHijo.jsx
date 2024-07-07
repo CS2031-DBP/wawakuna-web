@@ -56,7 +56,7 @@ export default function TableHijo(props) {
     .catch(error => {
         console.error(error)
     })
-  },[page])
+  },[page, rowsPerPage])
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
