@@ -14,6 +14,7 @@ const Prueba = () => {
             <Route path = "/hijo" element ={<CreateHijoForm/>}/>
             <Route path = "/profesor" element = {<CreateProfesorForm/>}/>
             <Route path = "/salon" element = {<CreateSalonForm/>}/>
+            <Route path = "/password" element = {<PatchAdmin/>}/>
         </Routes>
     )
 }

@@ -9,6 +9,7 @@ import DashboardPadre from "./pages/DashboardPadre"
 import DashboardProfesor from "./pages/DashboardProfesor"
 import DashboardSalones from "./pages/DashboardSalones"
 import NotFound from "./pages/NotFound"
+import Profile from "./pages/Profile"
 
 
 
@@ -25,7 +26,8 @@ function App() {
         <Route path = "/dashboard/padres" element ={<DashboardPadre/>}/>
         <Route path = "/dashboard/profesores" element ={<DashboardProfesor/>}/>
         <Route path = "/dashboard/salones" element ={<DashboardSalones/>}/>
-        <Route path = "/*" element = {<NotFound/>}/>
+        <Route path = "/dashboard/profile" element = {<Profile/>}/>
+        <Route path = "/*" element = {<NotFound/>}/>  
 
         <Route path = "/create/*" element = {<Create/>}/>
         <Route path = "/salon/:id/:name" element = {<SalonDetail/>}/>
@@ -35,6 +37,3 @@ function App() {
 }
 
 export default App
-
-//https://reactrouter.com/en/main/components/navigate
-//mvn spring-boot:run

@@ -2,30 +2,27 @@ import { useState } from "react";
 import { FormControl, InputLabel, Input, InputAdornment, IconButton, Button } from "@mui/material";
 import { VisibilityOff, Visibility } from "@mui/icons-material";
 import teacher_students from '../assets/teacher_students.jpg';
-
-import logo from '../assets/logo_slogan.png'
+import logo from '../assets/logo_slogan.png';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { API_URL } from "../utils/Utils";
-
-
+import ErrorAlert from "./alert/ErrorAlert";
 
 const LoginForm = () => {
     const [loginData, setLoginData] = useState({
         email: '',
         password: ''
     });
-    const navigate = useNavigate("/dashboard")
     const [showPassword, setShowPassword] = useState(false);
-
+    const [showErrorAlert, setShowErrorAlert] = useState(false); // State for error alert
+    const navigate = useNavigate();
 
     const handleChange = (name, value) => {
         setLoginData({
             ...loginData,
             [name]: value
-
-        })
-    }
+        });
+    };
 
     const onClick = () => {
         axios({
@@ -34,38 +31,33 @@ const LoginForm = () => {
             data: loginData
         })
         .then(response => {
-            localStorage.setItem('token',response.data.token); //Checkeen que response.data.token es correcto
-            navigate("/dashboard/hijos")
+            localStorage.setItem('token', response.data.token);
+            navigate("/dashboard/salones");
         })
         .catch(error => {
+            setShowErrorAlert(true); // Show error alert on error
             console.error(error);
-        })
-    }
+        });
+    };
 
-   
     const handleClickShowPassword = () => setShowPassword((show) => !show);
 
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
 
-    const handleLogin = () => {
-        // Handle login logic here
-        console.log('Login data:', loginData);
-    };
-    
     return (
         <div className="flex min-h-screen bg-gray-100">
             <div className="hidden lg:flex items-center justify-center w-3/5 bg-purple-100">
                 <img src={teacher_students} alt="Login Illustration" className="object-cover w-full h-full" />
             </div>
-            <div className="flex items-center justify-center w-full lg:w-2/5 bg-white p-4"> 
+            <div className="flex items-center justify-center w-full lg:w-2/5 bg-white p-4">
                 <div className="w-full max-w-xs">
                     <div>
-                    <img src={logo} alt="Logo" className="max-w-48 mx-auto mb-6" />
-                    </div> 
-                    <h1 className="text-3xl font-bold mb-6 text-center text-[#333333]">Iniciar Seción</h1> 
-                    <div className="space-y-3"> 
+                        <img src={logo} alt="Logo" className="max-w-48 mx-auto mb-6" />
+                    </div>
+                    <h1 className="text-3xl font-bold mb-6 text-center text-[#333333]">Iniciar Sesión</h1>
+                    <div className="space-y-3">
                         <FormControl fullWidth variant="standard">
                             <InputLabel htmlFor="email">Email</InputLabel>
                             <Input
@@ -102,10 +94,10 @@ const LoginForm = () => {
                                 Iniciar Sesión
                             </button>
                         </div>
-
                     </div>
                 </div>
             </div>
+            {showErrorAlert && <ErrorAlert />} {/* Conditionally render ErrorAlert */}
         </div>
     );
 };

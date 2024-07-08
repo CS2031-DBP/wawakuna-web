@@ -2,15 +2,15 @@ import Sidebar from "../components/SideBar";
 import AllProfesor from "../components/all/AllProfesor";
 
 
-const DashboardProfesor = () => {
-  return (
-    <div className="flex h-screen">
-      <Sidebar />
-      <div className="flex-grow p-10">
-        <AllProfesor />
+  const DashboardProfesor = () => {
+    return (
+      <div className="flex h-screen">
+        <Sidebar />
+        <div className="flex-grow p-10">
+          <AllProfesor />
+        </div>
       </div>
-    </div>
-  );
+    );
 };
 
 export default DashboardProfesor;

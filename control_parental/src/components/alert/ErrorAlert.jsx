@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 
-export default function ErrorAlert(props) {
+export default function ErrorAlert() {
     const [open, setOpen] = React.useState(false);
     
     const handleClose = (event, reason) => {

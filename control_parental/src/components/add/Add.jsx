@@ -59,15 +59,15 @@ const Add = (props) => {
 
     return(
         <div className="flex flex-row flex-grow w-full">
-            <Button className="w-1/3" onClick={onClick}>Añadir {text}</Button>
             <Autocomplete
                 disablePortal
-                className="w-1/2"
+                className="w-2/3"
                 onChange={(event,value) => {setId(value.id)}}
                 options = {rows}
                 isOptionEqualToValue={(option, value) => option.id === value?.id}
                 renderInput={(params) => <TextField {...params} label={text} />}
             />
+            <Button className="w-1/3" onClick={onClick}>Añadir {text}</Button>
             {
                 infoAlert?
                 <InfoAlert text = {text}/>

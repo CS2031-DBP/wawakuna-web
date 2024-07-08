@@ -3,31 +3,79 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import MenuIcon from '@mui/icons-material/Menu';
+import { styled } from '@mui/material/styles';
+import { redirect, useNavigate } from 'react-router-dom';
 
 import logo from '../assets/logo.png';
-import { useNavigate } from 'react-router-dom';
+
+const CustomMenu = styled(Menu)(({ theme }) => ({
+  '& .MuiPaper-root': {
+    backgroundColor: '#4B5563', // Matches the sidebar's bg-zinc-600
+    color: 'white',
+    width: '200px', // Adjust the width as needed
+  },
+}));
+
+const CustomMenuItem = styled(MenuItem)(({ theme }) => ({
+  '&:hover': {
+    backgroundColor: '#6B7280', // Matches the sidebar's hover:bg-zinc-500
+  },
+}));
 
 function ResponsiveAppBar() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
   const navigate = useNavigate();
-
+  
 
   React.useEffect(() => {
-    // Check if the user is logged in by checking for a token
-    const token = localStorage.getItem('token');
-    if (token) {
+    const checkTokenAndFetchData = async () => {
+      const token = localStorage.getItem('token');
+  
+      if (!token) {
+        navigate('/auth/login');
+        return;
+      }
+  
       setIsLoggedIn(true);
-    }
-  }, []);
+    };
+  
+    checkTokenAndFetchData();
+  }, [navigate]);
+
+  
+  if (!isLoggedIn) {
+    return null;
+  }
 
   const handleLogout = () => {
-    // Remove the token from localStorage and update the state
     localStorage.removeItem('token');
     setIsLoggedIn(false);
-    navigate('/')
+    navigate('/');
   };
+
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleChangePassword = () => {
+    navigate('/dashboard/profile');
+    handleMenuClose();
+  };
+
+  if (isLoggedIn === null) {
+    // Render nothing or a loading spinner while checking the login status
+    return null;
+  }
 
   return (
     <AppBar position="static" sx={{ backgroundColor: '#333333' }}>
@@ -40,9 +88,36 @@ function ResponsiveAppBar() {
             </Typography>
           </Box>
           {isLoggedIn && (
-            <Button color="inherit" onClick={handleLogout} sx={{ marginLeft: 'auto' }}>
-              Logout
-            </Button>
+            <>
+              <IconButton
+                edge="end"
+                color="inherit"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenuOpen}
+                sx={{ marginLeft: 'auto' }}
+              >
+                <MenuIcon />
+              </IconButton>
+              <CustomMenu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorEl)}
+                onClose={handleMenuClose}
+              >
+                <CustomMenuItem onClick={handleLogout}>Logout</CustomMenuItem>
+                <CustomMenuItem onClick={handleChangePassword}>Change Password</CustomMenuItem>
+              </CustomMenu>
+            </>
           )}
         </Toolbar>
       </Container>
