@@ -47,7 +47,7 @@ export default function TablePadre(props) {
     .catch(error => {
         console.error(error)
     })
-  },[page])
+  },[page,rowsPerPage])
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);

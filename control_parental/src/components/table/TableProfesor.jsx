@@ -46,7 +46,7 @@ export default function TableProfesor(props) {
       .catch((error) => {
         console.error(error);
       });
-  }, [page]);
+  }, [rowsPerPage,page]);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);

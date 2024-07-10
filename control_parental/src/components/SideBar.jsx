@@ -44,9 +44,9 @@ const Sidebar = () => {
   const [subMenuOpen, setSubMenuOpen] = useState(false);
 
   return (
-    <div className="h-dvh flex flex-col">
+    <div className=" flex flex-col">
       {/* Top section with main menus */}
-      <div className="lg:w-72 w-48 px-2 bg-zinc-600 flex-grow">
+      <div className="lg:w-72] w-48 px-2 bg-zinc-600 flex-grow">
         <ul className="pt-6">
           {Menus.map((Menu, index) => (
             <React.Fragment key={index}>
