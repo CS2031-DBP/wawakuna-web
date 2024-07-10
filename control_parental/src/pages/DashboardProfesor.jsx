@@ -6,7 +6,7 @@ import AllProfesor from "../components/all/AllProfesor";
     return (
       <div className="flex h-screen">
         <Sidebar />
-        <div className="flex-grow p-10">
+        <div className="flex-grow p-10 overflow-auto">
           <AllProfesor />
         </div>
       </div>
