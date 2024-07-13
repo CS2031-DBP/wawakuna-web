@@ -28,10 +28,6 @@ const SalonCard = (props) => {
     )
 }
 
-SalonCard.defaultProps = {
-    nombre: 'undefined',
-    value: 0
-}
 
 export default SalonCard
 

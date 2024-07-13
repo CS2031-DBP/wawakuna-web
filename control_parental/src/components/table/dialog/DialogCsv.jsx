@@ -1,12 +1,15 @@
 import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import CreateSalonForm from '../../create/CreateSalonForm';
+import CreateProfesorForm from '../../create/CreateProfesorForm';
 import { useState } from 'react';
+import UploadFile from '../../upload/UploadFile';
 
-export default function DialogSalon() {
+export default function DialogCsv(props) {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -20,15 +23,15 @@ export default function DialogSalon() {
   return (
     <>
       <Button variant="contained" onClick={handleClickOpen}>
-        Crear un nuevo salon
+        Subir un csv
       </Button>
       <Dialog
         open={open}
         onClose={handleClose}
       >
-        <DialogTitle>Crear un nuevo salon</DialogTitle>
+        <DialogTitle>Crear nuevo {props.text}</DialogTitle>
         <DialogContent>
-          <CreateSalonForm/>
+          <UploadFile text = {props.text} path = {props.path}/>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>

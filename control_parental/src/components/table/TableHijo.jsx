@@ -17,7 +17,7 @@ import { Button, Toolbar } from '@mui/material';
 import RowHijo from './row/RowHijo';
 import { useNavigate } from 'react-router-dom';
 import DialogHijo from './dialog/DialogHijo';
-
+import DialogCsv from './dialog/DialogCsv';
 
 function createData(id, nombre, apellido, padre, email) {
   return {
@@ -32,7 +32,7 @@ function createData(id, nombre, apellido, padre, email) {
 export default function TableHijo(props) {
   const {pathGet, pathDelete} = props
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
   const [rows, setRows] = useState([]);
   useEffect(() => {
     axios({
@@ -74,8 +74,9 @@ export default function TableHijo(props) {
     <TableContainer component={Paper}>
       <Toolbar className='flex flex-row'>
         <span className='flex-1'>Hijos</span>
-        <div className='flex-1 flex justify-end'>
+        <div className='flex-1 flex justify-end space-x-2'>
           <DialogHijo/>
+          <DialogCsv text="Hijo" path = "/hijo"/>
         </div>
       </Toolbar>
       <Table aria-label="simple table" sx={{minWidth: 750}}>
@@ -89,8 +90,8 @@ export default function TableHijo(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <RowHijo row={row} pathDelete={pathDelete} method = {props.method}/>
+          {rows.map((row,key) => (
+            <RowHijo key={key} row={row} pathDelete={pathDelete} method = {props.method} warningDelete = {props.warningDelete}/>
           ))}
         </TableBody>
       </Table>

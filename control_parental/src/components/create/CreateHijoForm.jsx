@@ -11,8 +11,6 @@ const CreateHijoForm = () => {
         <div className="w-full flex flex-col items-center">
             <span className="w-full text-center">{text}</span>
             <PostForm data = {data} path = {path} type = {type} text = {text}/>
-            <Divider component="div" className="w-full" variant="middle" textAlign="center">or</Divider>
-            <UploadFile path = {path} text = {text}/>
         </div>
     )
 }

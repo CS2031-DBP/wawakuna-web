@@ -15,11 +15,11 @@ const SalonDetail = () => {
                 <div className="flex flex-col space-y-5 w-full">
                     <div className="flex flex-col space-y-5 w-full">
                         <AddProfesor id={id} />
-                        <TableProfesor pathGet={`/profesor/salon/${id}`} pathDelete={`/salon/${id}/quitarProfesor`} method="patch" />
+                        <TableProfesor pathGet={`/profesor/salon/${id}`} pathDelete={`/salon/${id}/quitarProfesor`} method="patch" warningDelete="Se eliminará el profesor del salón"/>
                     </div>
                     <div className="flex flex-col space-y-5 w-full">
                         <AddHijo id={id} />
-                        <TableHijo pathGet={`/hijo/salon/${id}`} pathDelete={`/salon/${id}/quitarHijo`} method="patch" />
+                        <TableHijo pathGet={`/hijo/salon/${id}`} pathDelete={`/salon/${id}/quitarHijo`} method="patch" warningDelete="Se eliminará el hijo del salón"/>
                     </div>
                 </div>
             </div>

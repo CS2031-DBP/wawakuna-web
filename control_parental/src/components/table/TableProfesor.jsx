@@ -14,6 +14,7 @@ import { API_URL, getToken } from "../../utils/Utils";
 import axios from "axios";
 import { Toolbar } from "@mui/material";
 import DialogProfesor from "./dialog/DialogProfesor";
+import DialogCsv from "./dialog/DialogCsv";
 
 function createData(id, nombre, apellido, email) {
   return { id, nombre, apellido, email };
@@ -62,8 +63,9 @@ export default function TableProfesor(props) {
     <TableContainer component={Paper}>
       <Toolbar className='flex flex-row'>
         <span className='flex-1'>Profesores</span>
-        <div className='flex-1 flex justify-end'>
+        <div className='flex-1 flex justify-end space-x-2'>
           <DialogProfesor/>
+          <DialogCsv text="Profesor" path = "/profesor"/>
         </div>
       </Toolbar>
       <Table aria-label="simple table" sx={{minWidth: 750}}>
@@ -76,14 +78,14 @@ export default function TableProfesor(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <RowProfesor row={row} pathDelete = {pathDelete} method ={props.method}/>
+          {rows.map((row,key) => (
+            <RowProfesor key={key} row={row} pathDelete = {pathDelete} method ={props.method} warningDelete = {props.warningDelete}/>
           ))}
         </TableBody>
       </Table>
       <TablePagination
         component="div"
-        rowsPerPageOptions={[5, 10, 25]}
+        rowsPerPageOptions={[3, 5, 10]}
         count={100}
         page={page}
         onPageChange={handleChangePage}

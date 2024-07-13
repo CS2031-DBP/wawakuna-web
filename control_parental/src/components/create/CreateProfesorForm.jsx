@@ -11,7 +11,6 @@ const CreateProfesorForm = (props) => {
         <div className="w-full flex flex-col items-center">
             <span className="w-full text-center">{text}</span>
             <PostForm data = {data} path = {path} type = {type} text = {text} salonId = {salonId}/>
-            <UploadFile path = {path} text = {text}/>
         </div>
     )
 }

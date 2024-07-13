@@ -1,6 +1,11 @@
 import * as React from 'react';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import Button from '@mui/material/Button';
 
 import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -14,10 +19,21 @@ import WarningAlert from '../../alert/WarningAlert';
 const RowPadre = (props) => {
     const row = props.row
     const pathDelete = props.pathDelete
+    const warningDelete = props.warningDelete
     
     const [warningAlert, setWarningAlert] = useState(false);
+    const [openDialog, setOpenDialog] = useState(false);
+    
+    const handleClose = () => {
+        setOpenDialog(false);
+    }
+
+    const onDialog = () => {
+        setOpenDialog(true);
+    }
 
     const onDelete = () => {
+        setOpenDialog(false);
         axios({
             method: 'delete',
             url: API_URL + `${pathDelete}/${row.id}`,
@@ -44,7 +60,7 @@ const RowPadre = (props) => {
             <TableCell align='right'>{row.email}</TableCell>
             <TableCell align='right'>{row.phoneNumber}</TableCell>
             <TableCell align='right'>
-                <IconButton className='h-10' onClick={onDelete}>
+                <IconButton className='h-10' onClick={onDialog}>
                     <DeleteIcon/>
                 </IconButton>
             </TableCell>
@@ -54,6 +70,16 @@ const RowPadre = (props) => {
                 :
                 null
             }
+            <Dialog open = {openDialog} onClose = {handleClose}>
+                <DialogTitle>¿Eliminar Padre?</DialogTitle>
+                <DialogContent>
+                    {warningDelete}
+                </DialogContent>
+                <DialogActions className='flex flex-row'>
+                    <Button onClick={onDelete}>Eliminar Padre</Button>
+                    <Button onClick={handleClose}>Cancel</Button>
+                </DialogActions>
+            </Dialog>
         </TableRow>
     )
 }

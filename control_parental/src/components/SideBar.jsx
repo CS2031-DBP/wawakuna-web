@@ -36,7 +36,7 @@ const Sidebar = () => {
   return (
     <div className="flex flex-col h-full bg-zinc-600">
       <div className="lg:w-72 w-48 p-2 flex-grow">
-        <ul className="pt-6">
+        <ul className="pt-6 h-full">
           {Menus.map((Menu, index) => (
             <React.Fragment key={index}>
               <li className="flex flex-col">
