@@ -14,6 +14,7 @@ import { API_URL, getToken } from '../../utils/Utils';
 import axios from 'axios';
 import { Toolbar } from '@mui/material';
 import DialogPadre from './dialog/DialogPadre';
+import DialogCsv from './dialog/DialogCsv';
 
 function createData(id,nombre,apellido, email,phoneNumber) {
   return {id, nombre,apellido,email, phoneNumber};
@@ -23,7 +24,7 @@ function createData(id,nombre,apellido, email,phoneNumber) {
 export default function TablePadre(props) {
   const {pathGet, pathDelete} = props
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
   const [rows, setRows] = useState([]);
   useEffect(() => {
     axios({
@@ -64,8 +65,9 @@ export default function TablePadre(props) {
     <TableContainer component={Paper}>
       <Toolbar className='flex flex-row'>
         <span className='flex-1'>Padres</span>
-        <div className='flex-1 flex justify-end'>
+        <div className='flex-1 flex justify-end space-x-2'>
           <DialogPadre/>
+          <DialogCsv text="Padre" path = "/padre"/>
         </div>
       </Toolbar>
       <Table aria-label="simple table" sx={{minWidth: 750}}>
@@ -79,14 +81,14 @@ export default function TablePadre(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <RowPadre row={row} pathDelete={pathDelete}/>
+          {rows.map((row,key) => (
+            <RowPadre key={key} row={row} pathDelete={pathDelete} warningDelete = {props.warningDelete}/>
           ))}
         </TableBody>
       </Table>
       <TablePagination
         component="div"
-        rowsPerPageOptions={[5, 10, 25]}
+        rowsPerPageOptions={[3, 5, 10]}
         count={100}
         page={page}
         onPageChange={handleChangePage}

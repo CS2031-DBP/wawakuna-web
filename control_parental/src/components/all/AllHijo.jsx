@@ -6,7 +6,7 @@ function createData(id,nombre,apellido, padre) {
 
 export default function AllHijo() {
   return (
-    <TableHijo pathGet = "/hijo/all" pathDelete = "/hijo" method = "delete"/>
+    <TableHijo pathGet = "/hijo/all" pathDelete = "/hijo" method = "delete" warningDelete = "Esta operación es irreversible"/>
   );
 }
 

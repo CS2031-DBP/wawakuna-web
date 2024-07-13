@@ -20,12 +20,6 @@ const PostForm = (props) => {
     const [idPadre, setIdPadre] = useState(null);
     const [padres, setPadres] = useState([]);
 
-    const onClick_ = () =>{
-        console.log(formData);
-        console.log(getToken());
-        console.log(idPadre)
-    }
-
     const onClick = () => {
         const params = (text == 'Hijo')? {idPadre} : {}
         setErrorAlert(false);
@@ -106,7 +100,7 @@ const PostForm = (props) => {
                 :
                 null
             }
-            <Button onClick={onClick}>send form</Button>
+            <Button onClick={onClick}>Crear {text}</Button>
             {
                 successAlert ? 
                 <SuccessAlert text={text}/>

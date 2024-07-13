@@ -1,6 +1,11 @@
 import * as React from 'react';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import Button from '@mui/material/Button';
 
 import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -13,10 +18,21 @@ import { getToken } from '../../../utils/Utils';
 const RowHijo = (props) => {
     const row = props.row
     const pathDelete = props.pathDelete
+    const warningDelete = props.warningDelete
     const [warningAlert, setWarningAlert] = useState(false);
+    const [openDialog, setOpenDialog] = useState(false);
+
+
+    const handleClose = () => {
+        setOpenDialog(false);
+    }
+
+    const onDialog = () => {
+        setOpenDialog(true);
+    }
 
     const onDelete = () => {
-        console.log(row.id) 
+        setOpenDialog(false);
         axios({
             method: 'delete',
             url: API_URL + `${pathDelete}/${row.id}`,
@@ -26,7 +42,7 @@ const RowHijo = (props) => {
         })
         .then(response => {
             setWarningAlert(true);
-            //setTimeout(() => window.location.reload(), 2000)
+            setTimeout(() => window.location.reload(), 2000)
         })
         .catch(error => {
             console.error(error);
@@ -42,7 +58,7 @@ const RowHijo = (props) => {
             <TableCell align='right'>{row.padre}</TableCell>
             <TableCell align='right'>{row.email}</TableCell>
             <TableCell>
-                <IconButton className='h-10' onClick={onDelete}>
+                <IconButton className='h-10' onClick={onDialog}>
                     <DeleteIcon/>
                 </IconButton>
             </TableCell>
@@ -52,6 +68,16 @@ const RowHijo = (props) => {
                 :
                 null
             }
+            <Dialog open = {openDialog} onClose = {handleClose}>
+                <DialogTitle>¿Eliminar Hijo?</DialogTitle>
+                <DialogContent>
+                    {warningDelete}
+                </DialogContent>
+                <DialogActions className='flex flex-row'>
+                    <Button onClick={onDelete}>Eliminar Hijo</Button>
+                    <Button onClick={handleClose}>Cancel</Button>
+                </DialogActions>
+            </Dialog>
         </TableRow>
     )
 }
